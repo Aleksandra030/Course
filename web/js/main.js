@@ -90,6 +90,7 @@ $("."+j).append("<tr ><td colspan=\"2\"><h3>Publisher:</h3></td><td colspan=\"2\
 }
 if(c.session){
     $.each(c.session, function(i,ses){
+        var age = i++;
         $("."+j).append("<tr ><td colspan=\"2\"><h3>Session:"+i+"</h3></td></tr>\n");
         $("."+j).append("<tr ><td colspan=\"2\"><h5>Duration:</h5></td><td colspan=\"2\">"+ses.duration.description+"</td></tr>\n");
         $("."+j).append("<tr ><td colspan=\"2\"><h5>Start date:</h5></td><td colspan=\"2\">"+ses.startDate+"</td></tr>\n\</table></div>");

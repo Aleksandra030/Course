@@ -96,19 +96,14 @@ public class ServiceResource {
             se.setTypicalAgeRange("");
 
         }
-        System.out.println(se.getDuration() + "pre");
         if (se.getDuration().contains("all")) {
 
             se.setDuration("");
         }
-        System.out.println(se.getImeKursa() + "ime kursa na pocetku");
         if (se.getImeKursa().equals("Oba")) {
             se.setImeKursa("Coursera");
-            System.out.println(se.getImeKursa() + "kad je oba");
             courses1 = s.getCourses(se);
             se.setImeKursa("Udacity");
-            System.out.println(se.getImeKursa() + "kad je oba drugi put");
-            System.out.println(courses1.size() + "br u listiiii");
 
         }
         Collection<CreativeWork> courses = s.getCourses(se);
@@ -121,7 +116,6 @@ public class ServiceResource {
             JsonObject productJson = JSONParser.serialize(c);
             productArray.add(productJson);
         }
-        System.out.println(productArray);
         return productArray.toString();
 
     }
@@ -136,7 +130,6 @@ public class ServiceResource {
             JsonObject jsonLan = new JsonObject();
             jsonLan.addProperty("inLanguage", string);
             productArray.add(jsonLan);
-            System.out.println(string);
         }
 
         return productArray.toString();
@@ -152,7 +145,6 @@ public class ServiceResource {
             JsonObject jsonLan = new JsonObject();
             jsonLan.addProperty("typicalAgeRange", string);
             productArray.add(jsonLan);
-            System.out.println(string);
         }
         return productArray.toString();
     }
@@ -168,7 +160,6 @@ public class ServiceResource {
             JsonObject jsonLan = new JsonObject();
             jsonLan.addProperty("publishers", string);
             productArray.add(jsonLan);
-            System.out.println(string);
         }
         return productArray.toString();
 
@@ -186,7 +177,6 @@ public class ServiceResource {
             JsonObject jsonLan = new JsonObject();
             jsonLan.addProperty("naziv", string);
             productArray.add(jsonLan);
-            System.out.println(string);
         }
         return productArray.toString();
 
@@ -226,7 +216,6 @@ public class ServiceResource {
             JsonObject jsonLan = new JsonObject();
             jsonLan.addProperty("d", s);
             productArray.add(jsonLan);
-            System.out.println(s);
         }
         return productArray.toString();
     }

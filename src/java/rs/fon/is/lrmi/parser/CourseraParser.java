@@ -49,22 +49,20 @@ public class CourseraParser extends Parser {
             boolean obj = jsonElement.getAsJsonObject().has("id");
             if (obj == true) {
                 int id = jsonElement.getAsJsonObject().get("id").getAsInt();
-                System.out.println(id + "idd");
                 String c = Integer.toString(id);
                 String url = MessageFormat.format(COUSERA, c);
                 JsonArray searchResults2 = ParserUtil.vratiPodatke(url, "elements");
-                System.out.println("rez" + searchResults);
                 if (!searchResults.isJsonNull()) {
                     for (JsonElement jsonElement1 : searchResults2) {
                         CreativeWork creativeWork = parseCreativeWork(jsonElement1);
                         RDFModel.getInstance().save(creativeWork);
-                        System.out.println("dodao");
+                       
                         list.add(creativeWork);
                     }
                 }
             }
         }
-        System.out.println(list.size() + "list");
+       
         return list;
     }
 
@@ -72,12 +70,11 @@ public class CourseraParser extends Parser {
         CreativeWork creativeWork = new CreativeWork();
 
         int id = jsonElement.getAsJsonObject().get("id").getAsInt();
-        System.out.println(id + "id");
 
         boolean objName = jsonElement.getAsJsonObject().has("name");
         if (objName == true) {
             String name = jsonElement.getAsJsonObject().get("name").getAsString();
-            System.out.println(name + "name");
+
             if (name != null) {
                 creativeWork.setName(name);
             } else {
@@ -87,7 +84,7 @@ public class CourseraParser extends Parser {
         boolean objLangu = jsonElement.getAsJsonObject().has("language");
         if (objLangu == true) {
             String language = jsonElement.getAsJsonObject().get("language").getAsString();
-            System.out.println(language + "language");
+
             if (language != null) {
                 creativeWork.setInLanguage(language);
             } else {
@@ -131,12 +128,10 @@ public class CourseraParser extends Parser {
             JsonArray universities = links.get("universities").getAsJsonArray();
             for (JsonElement jsonElement2 : universities) {
                 int u = jsonElement2.getAsJsonPrimitive().getAsInt();
-                System.out.println(universities + "universities");
                 Organization organization = parseOrganization(u);
 
                 if (organization.getName() != null) {
-                    System.out.println("unsdfsfiversities");
-                    System.out.println(organization.getName());
+                    
                     creativeWork.getPublisher().add(organization);
                 }
 
@@ -168,7 +163,6 @@ public class CourseraParser extends Parser {
                 if (child != null) {
                     creativeWork.getChildren().add(child);
                     child.setPosition(position);
-                    System.out.println(position+"pozicija");
                     d.setDescription( d.getDescription() + child.getDuration().getDescription());
                    ima=true;
 
@@ -183,7 +177,6 @@ public class CourseraParser extends Parser {
             if(true && !d.getDescription().isEmpty()){
                   d.setUri(URIGenerator.generate(d));
              creativeWork.setDuration(d);
-           System.out.println(creativeWork.getDuration().getDescription() + "duration kod coursere");
             if (creativeWork.getDuration().getDescription().contains("D")) {
                 split = "D";
             }
